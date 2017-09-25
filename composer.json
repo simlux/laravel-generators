@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "php": ">=7.0",
         "simlux/string-buffer": "dev-master"
     },
     "require-dev": {
