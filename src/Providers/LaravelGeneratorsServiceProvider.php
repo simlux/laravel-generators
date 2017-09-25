@@ -3,6 +3,7 @@
 namespace Simlux\LaravelGenerators;
 
 use Illuminate\Support\ServiceProvider;
+use Simlux\LaravelGenerators\Console\Commands\Generator\ModelGeneratorCommand;
 
 class LaravelGeneratorsServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,12 @@ class LaravelGeneratorsServiceProvider extends ServiceProvider
         $this->publishes([
             self::CONFIG_FILE => config_path('laravel_generators.php'),
         ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                ModelGeneratorCommand::class,
+            ]);
+        }
     }
 
     /**
