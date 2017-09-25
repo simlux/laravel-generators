@@ -2,24 +2,22 @@
 
 namespace Simlux\LaravelGenerators\Tests\Composer;
 
-use PHPUnit\Framework\TestCase;
+use Simlux\LaravelGenerators\Tests\TestCase;
 use Simlux\LaravelGenerators\Composer\ComposerEdit;
 
 class ComposerEditTest extends TestCase
 {
-    public function test()
+    public function testExtendComposerJsonFile()
     {
-        $path = __DIR__ . '/../fixtures/';
-
-        $edit = new ComposerEdit($path . 'composer_test.json');
+        $edit = new ComposerEdit($this->fixturePath('composer_test.json'));
         $edit->addProvider('SomeProvider');
         $edit->addAlias('Simlux', 'Simlux/SomeClass');
         $edit->addDontDiscover('AnotherClass');
 
-        $testFile = $path . 'composer_produced.json';
+        $testFile = $this->fixturePath('composer_produced.json');
         $edit->write($testFile);
 
-        $this->assertSame(file_get_contents($path . 'composer_expected.json'), file_get_contents($testFile));
+        $this->assertSame(file_get_contents($this->fixturePath('composer_expected.json')), file_get_contents($testFile));
         unlink($testFile);
     }
 }
