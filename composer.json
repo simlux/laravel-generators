@@ -21,7 +21,6 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
             "Simlux\\LaravelGenerators\\": "src",
             "Simlux\\LaravelGenerators\\Tests\\": "tests"
         }
