@@ -1060,6 +1060,763 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    class View {
+        
+        /**
+         * Get the evaluated view contents for the given view.
+         *
+         * @param string $path
+         * @param array $data
+         * @param array $mergeData
+         * @return \Illuminate\Contracts\View\View 
+         * @static 
+         */ 
+        public static function file($path, $data = array(), $mergeData = array())
+        {
+            return \Illuminate\View\Factory::file($path, $data, $mergeData);
+        }
+        
+        /**
+         * Get the evaluated view contents for the given view.
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Illuminate\Contracts\View\View 
+         * @static 
+         */ 
+        public static function make($view, $data = array(), $mergeData = array())
+        {
+            return \Illuminate\View\Factory::make($view, $data, $mergeData);
+        }
+        
+        /**
+         * Get the first view that actually exists from the given list.
+         *
+         * @param array $views
+         * @param array $data
+         * @param array $mergeData
+         * @return \Illuminate\Contracts\View\View 
+         * @static 
+         */ 
+        public static function first($views, $data = array(), $mergeData = array())
+        {
+            return \Illuminate\View\Factory::first($views, $data, $mergeData);
+        }
+        
+        /**
+         * Get the rendered content of the view based on a given condition.
+         *
+         * @param bool $condition
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return string 
+         * @static 
+         */ 
+        public static function renderWhen($condition, $view, $data = array(), $mergeData = array())
+        {
+            return \Illuminate\View\Factory::renderWhen($condition, $view, $data, $mergeData);
+        }
+        
+        /**
+         * Get the rendered contents of a partial from a loop.
+         *
+         * @param string $view
+         * @param array $data
+         * @param string $iterator
+         * @param string $empty
+         * @return string 
+         * @static 
+         */ 
+        public static function renderEach($view, $data, $iterator, $empty = 'raw|')
+        {
+            return \Illuminate\View\Factory::renderEach($view, $data, $iterator, $empty);
+        }
+        
+        /**
+         * Determine if a given view exists.
+         *
+         * @param string $view
+         * @return bool 
+         * @static 
+         */ 
+        public static function exists($view)
+        {
+            return \Illuminate\View\Factory::exists($view);
+        }
+        
+        /**
+         * Get the appropriate view engine for the given path.
+         *
+         * @param string $path
+         * @return \Illuminate\Contracts\View\Engine 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function getEngineFromPath($path)
+        {
+            return \Illuminate\View\Factory::getEngineFromPath($path);
+        }
+        
+        /**
+         * Add a piece of shared data to the environment.
+         *
+         * @param array|string $key
+         * @param mixed $value
+         * @return mixed 
+         * @static 
+         */ 
+        public static function share($key, $value = null)
+        {
+            return \Illuminate\View\Factory::share($key, $value);
+        }
+        
+        /**
+         * Increment the rendering counter.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function incrementRender()
+        {
+            \Illuminate\View\Factory::incrementRender();
+        }
+        
+        /**
+         * Decrement the rendering counter.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function decrementRender()
+        {
+            \Illuminate\View\Factory::decrementRender();
+        }
+        
+        /**
+         * Check if there are no active render operations.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function doneRendering()
+        {
+            return \Illuminate\View\Factory::doneRendering();
+        }
+        
+        /**
+         * Add a location to the array of view locations.
+         *
+         * @param string $location
+         * @return void 
+         * @static 
+         */ 
+        public static function addLocation($location)
+        {
+            \Illuminate\View\Factory::addLocation($location);
+        }
+        
+        /**
+         * Add a new namespace to the loader.
+         *
+         * @param string $namespace
+         * @param string|array $hints
+         * @return $this 
+         * @static 
+         */ 
+        public static function addNamespace($namespace, $hints)
+        {
+            return \Illuminate\View\Factory::addNamespace($namespace, $hints);
+        }
+        
+        /**
+         * Prepend a new namespace to the loader.
+         *
+         * @param string $namespace
+         * @param string|array $hints
+         * @return $this 
+         * @static 
+         */ 
+        public static function prependNamespace($namespace, $hints)
+        {
+            return \Illuminate\View\Factory::prependNamespace($namespace, $hints);
+        }
+        
+        /**
+         * Replace the namespace hints for the given namespace.
+         *
+         * @param string $namespace
+         * @param string|array $hints
+         * @return $this 
+         * @static 
+         */ 
+        public static function replaceNamespace($namespace, $hints)
+        {
+            return \Illuminate\View\Factory::replaceNamespace($namespace, $hints);
+        }
+        
+        /**
+         * Register a valid view extension and its engine.
+         *
+         * @param string $extension
+         * @param string $engine
+         * @param \Closure $resolver
+         * @return void 
+         * @static 
+         */ 
+        public static function addExtension($extension, $engine, $resolver = null)
+        {
+            \Illuminate\View\Factory::addExtension($extension, $engine, $resolver);
+        }
+        
+        /**
+         * Flush all of the factory state like sections and stacks.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushState()
+        {
+            \Illuminate\View\Factory::flushState();
+        }
+        
+        /**
+         * Flush all of the section contents if done rendering.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushStateIfDoneRendering()
+        {
+            \Illuminate\View\Factory::flushStateIfDoneRendering();
+        }
+        
+        /**
+         * Get the extension to engine bindings.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getExtensions()
+        {
+            return \Illuminate\View\Factory::getExtensions();
+        }
+        
+        /**
+         * Get the engine resolver instance.
+         *
+         * @return \Illuminate\View\Engines\EngineResolver 
+         * @static 
+         */ 
+        public static function getEngineResolver()
+        {
+            return \Illuminate\View\Factory::getEngineResolver();
+        }
+        
+        /**
+         * Get the view finder instance.
+         *
+         * @return \Illuminate\View\ViewFinderInterface 
+         * @static 
+         */ 
+        public static function getFinder()
+        {
+            return \Illuminate\View\Factory::getFinder();
+        }
+        
+        /**
+         * Set the view finder instance.
+         *
+         * @param \Illuminate\View\ViewFinderInterface $finder
+         * @return void 
+         * @static 
+         */ 
+        public static function setFinder($finder)
+        {
+            \Illuminate\View\Factory::setFinder($finder);
+        }
+        
+        /**
+         * Flush the cache of views located by the finder.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushFinderCache()
+        {
+            \Illuminate\View\Factory::flushFinderCache();
+        }
+        
+        /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function getDispatcher()
+        {
+            return \Illuminate\View\Factory::getDispatcher();
+        }
+        
+        /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $events
+         * @return void 
+         * @static 
+         */ 
+        public static function setDispatcher($events)
+        {
+            \Illuminate\View\Factory::setDispatcher($events);
+        }
+        
+        /**
+         * Get the IoC container instance.
+         *
+         * @return \Illuminate\Contracts\Container\Container 
+         * @static 
+         */ 
+        public static function getContainer()
+        {
+            return \Illuminate\View\Factory::getContainer();
+        }
+        
+        /**
+         * Set the IoC container instance.
+         *
+         * @param \Illuminate\Contracts\Container\Container $container
+         * @return void 
+         * @static 
+         */ 
+        public static function setContainer($container)
+        {
+            \Illuminate\View\Factory::setContainer($container);
+        }
+        
+        /**
+         * Get an item from the shared data.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function shared($key, $default = null)
+        {
+            return \Illuminate\View\Factory::shared($key, $default);
+        }
+        
+        /**
+         * Get all of the shared data for the environment.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getShared()
+        {
+            return \Illuminate\View\Factory::getShared();
+        }
+        
+        /**
+         * Start a component rendering process.
+         *
+         * @param string $name
+         * @param array $data
+         * @return void 
+         * @static 
+         */ 
+        public static function startComponent($name, $data = array())
+        {
+            \Illuminate\View\Factory::startComponent($name, $data);
+        }
+        
+        /**
+         * Render the current component.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function renderComponent()
+        {
+            return \Illuminate\View\Factory::renderComponent();
+        }
+        
+        /**
+         * Start the slot rendering process.
+         *
+         * @param string $name
+         * @param string|null $content
+         * @return void 
+         * @static 
+         */ 
+        public static function slot($name, $content = null)
+        {
+            \Illuminate\View\Factory::slot($name, $content);
+        }
+        
+        /**
+         * Save the slot content for rendering.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function endSlot()
+        {
+            \Illuminate\View\Factory::endSlot();
+        }
+        
+        /**
+         * Register a view creator event.
+         *
+         * @param array|string $views
+         * @param \Closure|string $callback
+         * @return array 
+         * @static 
+         */ 
+        public static function creator($views, $callback)
+        {
+            return \Illuminate\View\Factory::creator($views, $callback);
+        }
+        
+        /**
+         * Register multiple view composers via an array.
+         *
+         * @param array $composers
+         * @return array 
+         * @static 
+         */ 
+        public static function composers($composers)
+        {
+            return \Illuminate\View\Factory::composers($composers);
+        }
+        
+        /**
+         * Register a view composer event.
+         *
+         * @param array|string $views
+         * @param \Closure|string $callback
+         * @return array 
+         * @static 
+         */ 
+        public static function composer($views, $callback)
+        {
+            return \Illuminate\View\Factory::composer($views, $callback);
+        }
+        
+        /**
+         * Call the composer for a given view.
+         *
+         * @param \Illuminate\Contracts\View\View $view
+         * @return void 
+         * @static 
+         */ 
+        public static function callComposer($view)
+        {
+            \Illuminate\View\Factory::callComposer($view);
+        }
+        
+        /**
+         * Call the creator for a given view.
+         *
+         * @param \Illuminate\Contracts\View\View $view
+         * @return void 
+         * @static 
+         */ 
+        public static function callCreator($view)
+        {
+            \Illuminate\View\Factory::callCreator($view);
+        }
+        
+        /**
+         * Start injecting content into a section.
+         *
+         * @param string $section
+         * @param string|null $content
+         * @return void 
+         * @static 
+         */ 
+        public static function startSection($section, $content = null)
+        {
+            \Illuminate\View\Factory::startSection($section, $content);
+        }
+        
+        /**
+         * Inject inline content into a section.
+         *
+         * @param string $section
+         * @param string $content
+         * @return void 
+         * @static 
+         */ 
+        public static function inject($section, $content)
+        {
+            \Illuminate\View\Factory::inject($section, $content);
+        }
+        
+        /**
+         * Stop injecting content into a section and return its contents.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function yieldSection()
+        {
+            return \Illuminate\View\Factory::yieldSection();
+        }
+        
+        /**
+         * Stop injecting content into a section.
+         *
+         * @param bool $overwrite
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function stopSection($overwrite = false)
+        {
+            return \Illuminate\View\Factory::stopSection($overwrite);
+        }
+        
+        /**
+         * Stop injecting content into a section and append it.
+         *
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function appendSection()
+        {
+            return \Illuminate\View\Factory::appendSection();
+        }
+        
+        /**
+         * Get the string contents of a section.
+         *
+         * @param string $section
+         * @param string $default
+         * @return string 
+         * @static 
+         */ 
+        public static function yieldContent($section, $default = '')
+        {
+            return \Illuminate\View\Factory::yieldContent($section, $default);
+        }
+        
+        /**
+         * Get the parent placeholder for the current request.
+         *
+         * @param string $section
+         * @return string 
+         * @static 
+         */ 
+        public static function parentPlaceholder($section = '')
+        {
+            return \Illuminate\View\Factory::parentPlaceholder($section);
+        }
+        
+        /**
+         * Check if section exists.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasSection($name)
+        {
+            return \Illuminate\View\Factory::hasSection($name);
+        }
+        
+        /**
+         * Get the contents of a section.
+         *
+         * @param string $name
+         * @param string $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getSection($name, $default = null)
+        {
+            return \Illuminate\View\Factory::getSection($name, $default);
+        }
+        
+        /**
+         * Get the entire array of sections.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getSections()
+        {
+            return \Illuminate\View\Factory::getSections();
+        }
+        
+        /**
+         * Flush all of the sections.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushSections()
+        {
+            \Illuminate\View\Factory::flushSections();
+        }
+        
+        /**
+         * Add new loop to the stack.
+         *
+         * @param \Countable|array $data
+         * @return void 
+         * @static 
+         */ 
+        public static function addLoop($data)
+        {
+            \Illuminate\View\Factory::addLoop($data);
+        }
+        
+        /**
+         * Increment the top loop's indices.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function incrementLoopIndices()
+        {
+            \Illuminate\View\Factory::incrementLoopIndices();
+        }
+        
+        /**
+         * Pop a loop from the top of the loop stack.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function popLoop()
+        {
+            \Illuminate\View\Factory::popLoop();
+        }
+        
+        /**
+         * Get an instance of the last loop in the stack.
+         *
+         * @return \stdClass|null 
+         * @static 
+         */ 
+        public static function getLastLoop()
+        {
+            return \Illuminate\View\Factory::getLastLoop();
+        }
+        
+        /**
+         * Get the entire loop stack.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getLoopStack()
+        {
+            return \Illuminate\View\Factory::getLoopStack();
+        }
+        
+        /**
+         * Start injecting content into a push section.
+         *
+         * @param string $section
+         * @param string $content
+         * @return void 
+         * @static 
+         */ 
+        public static function startPush($section, $content = '')
+        {
+            \Illuminate\View\Factory::startPush($section, $content);
+        }
+        
+        /**
+         * Stop injecting content into a push section.
+         *
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function stopPush()
+        {
+            return \Illuminate\View\Factory::stopPush();
+        }
+        
+        /**
+         * Start prepending content into a push section.
+         *
+         * @param string $section
+         * @param string $content
+         * @return void 
+         * @static 
+         */ 
+        public static function startPrepend($section, $content = '')
+        {
+            \Illuminate\View\Factory::startPrepend($section, $content);
+        }
+        
+        /**
+         * Stop prepending content into a push section.
+         *
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function stopPrepend()
+        {
+            return \Illuminate\View\Factory::stopPrepend();
+        }
+        
+        /**
+         * Get the string contents of a push section.
+         *
+         * @param string $section
+         * @param string $default
+         * @return string 
+         * @static 
+         */ 
+        public static function yieldPushContent($section, $default = '')
+        {
+            return \Illuminate\View\Factory::yieldPushContent($section, $default);
+        }
+        
+        /**
+         * Flush all of the stacks.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushStacks()
+        {
+            \Illuminate\View\Factory::flushStacks();
+        }
+        
+        /**
+         * Start a translation block.
+         *
+         * @param array $replacements
+         * @return void 
+         * @static 
+         */ 
+        public static function startTranslation($replacements = array())
+        {
+            \Illuminate\View\Factory::startTranslation($replacements);
+        }
+        
+        /**
+         * Render the current translation.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function renderTranslation()
+        {
+            return \Illuminate\View\Factory::renderTranslation();
+        }
+         
+    }
+ 
 }
 
 namespace  { 
@@ -1068,6 +1825,8 @@ namespace  {
 
     class DB extends \Illuminate\Support\Facades\DB {}
  
+    class View extends \Illuminate\Support\Facades\View {}
+    
 }
 
 ```
