@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "simlux/string-buffer": "dev-master",
         "illuminate/database": "^5.5",
         "illuminate/config": "^5.5",
